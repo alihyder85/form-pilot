@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Form Filler Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        
+        h1 {
+            color: #4285f4;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-container {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .form-section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            color: #4285f4;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        input[type="checkbox"],
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        .checkbox-group,
+        .radio-group {
+            margin-bottom: 10px;
+        }
+        
+        .checkbox-group label,
+        .radio-group label {
+            display: inline-flex;
+            align-items: center;
+            font-weight: normal;
+        }
+        
+        .inline-group {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .inline-group .form-group {
+            flex: 1;
+        }
+        
+        button {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto 0;
+        }
+        
+        button:hover {
+            background-color: #3367d6;
+        }
+        
+        .instructions {
+            background-color: #e8f0fe;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+        }
+        
+        .instructions h3 {
+            margin-top: 0;
+            color: #4285f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Smart Form Filler Demo</h1>
+    
+    <div class="instructions">
+        <h3>How to Use This Demo</h3>
+        <p>This page contains a sample form with various field types to demonstrate the Smart Form Filler Chrome extension. To use:</p>
+        <ol>
+            <li>Make sure the Smart Form Filler extension is installed in Chrome</li>
+            <li>Ensure the local server is running on localhost:8080</li>
+            <li>The extension should automatically detect and fill the form fields</li>
+            <li>You can also click the extension icon to manually trigger form filling</li>
+        </ol>
+    </div>
+    
+    <div class="form-container">
+        <form id="demo-form">
+            <div class="form-section">
+                <h2>Personal Information</h2>
+                
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name">
+                </div>
+                
+                <div class="inline-group">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" placeholder="First name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" placeholder="Last name">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a password">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="birthdate">Date of Birth</label>
+                    <input type="date" id="birthdate" name="birthdate">
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2>Address Information</h2>
+                
+                <div class="form-group">
+                    <label for="address">Street Address</label>
+                    <input type="text" id="address" name="address" placeholder="Enter your street address">
+                </div>
+                
+                <div class="form-group">
+                    <label for="address2">Apartment/Suite/Unit (optional)</label>
+                    <input type="text" id="address2" name="address2" placeholder="Apt, Suite, Unit, etc.">
+                </div>
+                
+                <div class="inline-group">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city" placeholder="City">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="state">State/Province</label>
+                        <input type="text" id="state" name="state" placeholder="State">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="zipCode">Zip/Postal Code</label>
+                        <input type="text" id="zipCode" name="zipCode" placeholder="Zip code">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select id="country" name="country">
+                        <option value="">Select a country</option>
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="AU">Australia</option>
+                        <option value="DE">Germany</option>
+                        <option value="FR">France</option>
+                        <option value="JP">Japan</option>
+                        <option value="IN">India</option>
+                        <option value="BR">Brazil</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2>Account Preferences</h2>
+                
+                <div class="form-group">
+                    <label for="occupation">Occupation</label>
+                    <input type="text" id="occupation" name="occupation" placeholder="Enter your occupation">
+                </div>
+                
+                <div class="form-group">
+                    <label for="income">Annual Income</label>
+                    <input type="number" id="income" name="income" placeholder="Enter your annual income">
+                </div>
+                
+                <div class="form-group">
+                    <label>Preferred Contact Method</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="contactMethod" value="email"> Email
+                        </label>
+                    </div>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="contactMethod" value="phone"> Phone
+                        </label>
+                    </div>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="contactMethod" value="mail"> Mail
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Interests (select all that apply)</label>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="interests" value="technology"> Technology
+                        </label>
+                    </div>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="interests" value="sports"> Sports
+                        </label>
+                    </div>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="interests" value="music"> Music
+                        </label>
+                    </div>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="interests" value="travel"> Travel
+                        </label>
+                    </div>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="interests" value="food"> Food
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2>Additional Information</h2>
+                
+                <div class="form-group">
+                    <label for="comments">Comments or Questions</label>
+                    <textarea id="comments" name="comments" rows="4" placeholder="Enter any additional comments or questions"></textarea>
+                </div>
+                
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" id="subscribe" name="subscribe" value="yes"> Subscribe to newsletter
+                    </label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" id="terms" name="terms" value="accepted"> I agree to the terms and conditions
+                    </label>
+                </div>
+            </div>
+            
+            <button type="submit">Submit Form</button>
+        </form>
+    </div>
+    
+    <script>
+        // Prevent form submission for demo purposes
+        document.getElementById('demo-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Form submission prevented for demo purposes. In a real application, this form would be submitted.');
+        });
+    </script>
+</body>
+</html>
